@@ -1,19 +1,25 @@
 package com.testcases;
 
 import com.base.BaseTests;
-import org.openqa.selenium.By;
+import com.pages.LoginPage;
+import com.utils.JsonDataReader;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTests {
-
+    LoginPage login;
     @Test
     public void testLogin() {
-        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-
-        driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys("Admin");
-        driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("admin123");
-        driver.findElement(By.xpath("//button[normalize-space()='Login']")).click();
-        Assert.assertEquals(driver.getTitle(), "OrangeHRM", "Login failed!");
+        login.login(JsonDataReader.get("username"),JsonDataReader.get("password"));
+        Assert.assertTrue(login.verifySwagLabsScreen());
     }
+    /**
+     * The annotated method will be run before all the test methods in the current class have been run.
+     */
+    @BeforeMethod()
+    public void assignPages() {
+        login = new LoginPage();
+    }
+
 }

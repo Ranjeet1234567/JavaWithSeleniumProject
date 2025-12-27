@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Modules>
+    <Element>
+        <NameOfElement>LoginScreen</NameOfElement>
+        <ElementProperty>
+            <Type>xpath</Type>
+            <Value>//*[@id="root"]/div/div[contains(text(),"Swag Labs")]</Value>
+        </ElementProperty>
+    </Element>
+    <Element>
+        <NameOfElement>UserNameField</NameOfElement>
+        <ElementProperty>
+            <Type>id</Type>
+            <Value>user-name</Value>
+        </ElementProperty>
+    </Element>
+    <Element>
+        <NameOfElement>PasswordField</NameOfElement>
+        <ElementProperty>
+            <Type>id</Type>
+            <Value>password</Value>
+        </ElementProperty>
+    </Element>
+    <Element>
+        <NameOfElement>LoginButton</NameOfElement>
+        <ElementProperty>
+            <Type>id</Type>
+            <Value>login-button</Value>
+        </ElementProperty>
+    </Element>
+    <Element>
+        <NameOfElement>SwagLabsScreen</NameOfElement>
+        <ElementProperty>
+            <Type>xpath</Type>
+            <Value>//*[@id="header_container"]/div[1]/div[2]/div[@class="app_logo"]</Value>
+        </ElementProperty>
+    </Element>
+</Modules>
