@@ -2,7 +2,9 @@ package com.listeners;
 
 import com.aventstack.extentreports.*;
 import com.reports.ExtentManager;
+import com.utils.AllureUtil;
 import com.utils.ScreenshotUtil;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import org.testng.*;
 
@@ -33,6 +35,13 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         getTest().fail(result.getThrowable());
+        // Attach log file to Allure
+        AllureUtil.attachLogFile();
+        // Optional: attach failure message
+        Allure.addAttachment(
+                "Failure Reason",
+                result.getThrowable().getMessage()
+        );
         if (!isFinalFailure(result)) {
             getTest().info("Retry in progress. Screenshot skipped.");
             return;
