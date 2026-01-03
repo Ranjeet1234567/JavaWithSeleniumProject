@@ -20,13 +20,15 @@ public class DriverFactory {
         switch (browser.toLowerCase()) {
 
             case "chrome":
-                WebDriverManager.chromedriver().setup();
+                WebDriverManager.chromedriver()
+                        .browserVersion("129")
+                        .setup();
+
                 ChromeOptions options = new ChromeOptions();
                 options.setBinary("C:\\Users\\ranjeetverma\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe");
                 options.addArguments("--headless=new");
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
-                options.addArguments("--disable-gpu");
                 options.addArguments("--window-size=1920,1080");
                 webDriver = new ChromeDriver(options);
                 break;
