@@ -1,15 +1,29 @@
 package com.listeners;
+
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
 public class RetryAnalyzer implements IRetryAnalyzer {
 
-    private int count = 0;
-    private static final int MAX_RETRY = 1;
+    private int retryCount = 0;
+    private static final int maxRetryCount = 2;
 
     @Override
     public boolean retry(ITestResult result) {
-        return count++ < MAX_RETRY;
+        if (retryCount < maxRetryCount) {
+            retryCount++;
+            return true;
+        }
+        return false;
+    }
+
+    public int getRetryCount() {
+        return retryCount;
+    }
+
+    public int getMaxRetryCount() {
+        return maxRetryCount;
     }
 }
+
 

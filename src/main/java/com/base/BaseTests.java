@@ -15,8 +15,8 @@ public class BaseTests {
     protected String dataFile;
 
     @BeforeMethod
-    @Parameters({ "env", "dataFile" })
-    public void setup(@Optional("qa") String env,
+    @Parameters({"browser", "env", "dataFile" })
+    public void setup(@Optional("chrome") String browser,@Optional("qa") String env,
                       @Optional("login.json") String dataFile) {
 
         String url = ConfigReader.getProperty("url");
@@ -26,7 +26,7 @@ public class BaseTests {
 
         JsonDataReader.load(this.env, this.dataFile);
 
-        DriverFactory.initDriver();   // driver is set here
+        DriverFactory.initDriver(browser);   // driver is set here
 
         if (url == null) {
             throw new RuntimeException("URL not found for env: " + env);
@@ -34,7 +34,7 @@ public class BaseTests {
 
         DriverFactory.getDriver().manage().timeouts()
                 .implicitlyWait(Duration.ofSeconds(10));
-
+        DriverFactory.getDriver().manage().window().maximize();
         DriverFactory.getDriver().get(url);
     }
 

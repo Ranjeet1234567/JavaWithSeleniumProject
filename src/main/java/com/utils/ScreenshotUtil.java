@@ -1,39 +1,52 @@
 package com.utils;
 
-import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import com.utils.DriverFactory; // Your WebDriver manager
+import org.apache.commons.io.FileUtils;
 
 public class ScreenshotUtil {
 
-    // Return screenshot as bytes for Allure
-    public static byte[] takeScreenshotBytes() {
+    private static final String SCREENSHOT_DIR = System.getProperty("user.dir") + "/reports/screenshots";
+
+    static {
+        File folder = new File(SCREENSHOT_DIR);
+        if (!folder.exists()) folder.mkdirs();
+    }
+
+    /**
+     * Capture screenshot with timestamp and return the file name.
+     * Suitable for ExtentReports.
+     */
+    public static String captureScreenshot(String testName) {
+        try {
+            WebDriver driver = DriverFactory.getDriver(); // Your WebDriver instance
+            File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            String fileName = testName + "_" + timestamp + ".png";
+            String destPath = SCREENSHOT_DIR + "/" + fileName;
+
+            FileUtils.copyFile(srcFile, new File(destPath));
+
+            return fileName; // only file name for ExtentReports
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    /**
+     * Capture screenshot as byte array for Allure attachments.
+     */
+    public static byte[] getScreenshotAsBytes() {
         WebDriver driver = DriverFactory.getDriver();
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
-
-    // Save screenshot to file for ExtentReports
-    public static String takeScreenshotFile(String name) {
-        WebDriver driver = DriverFactory.getDriver();
-        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String path = "reports/screenshots/" + name + ".png";
-        try {
-            Files.createDirectories(Paths.get("reports/screenshots"));
-            Files.copy(srcFile.toPath(), Paths.get(path));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return path;
-    }
-
-
 }

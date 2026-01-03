@@ -10,7 +10,13 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTests {
     LoginPage login;
     @Test
-    public void testLogin() {
+    public void validLogin() {
+        login.login(JsonDataReader.get("username"),JsonDataReader.get("password"));
+        Assert.assertTrue(login.verifySwagLabsScreen());
+    }
+    //retryAnalyzer = com.listeners.RetryAnalyzer.class
+    @Test()
+    public void invalidLogin() {
         login.login(JsonDataReader.get("username"),JsonDataReader.get("password"));
         Assert.assertTrue(login.verifySwagLabsScreen());
     }
