@@ -29,7 +29,6 @@ public class DriverFactory {
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("--window-size=1920,1080");
-
                  */
                 webDriver = new ChromeDriver(options);
                 break;
@@ -38,7 +37,6 @@ public class DriverFactory {
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.setAcceptInsecureCerts(true);
-                // firefoxOptions.setBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe"); // if needed
                 webDriver = new FirefoxDriver(firefoxOptions);
                 break;
 

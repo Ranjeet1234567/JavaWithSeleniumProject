@@ -11,12 +11,14 @@ public class LoginTest extends BaseTests {
     LoginPage login;
     @Test
     public void validLogin() {
+        login.verifyLoginScreen();
         login.login(JsonDataReader.get("username"),JsonDataReader.get("password"));
         Assert.assertTrue(login.verifySwagLabsScreen());
     }
     //retryAnalyzer = com.listeners.RetryAnalyzer.class
     @Test()
     public void invalidLogin() {
+        login.verifyLoginScreen();
         login.login(JsonDataReader.get("username"),JsonDataReader.get("password"));
         Assert.assertTrue(login.verifySwagLabsScreen());
     }
