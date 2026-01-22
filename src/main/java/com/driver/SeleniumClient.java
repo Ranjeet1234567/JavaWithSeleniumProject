@@ -11,13 +11,9 @@ public class SeleniumClient {
     public SeleniumClient(WebDriver driver) {
         this.driver = driver;
     }
-
-    // 🔥 THIS enables: seleniumClient.element("Login","PasswordField").setText()
     public UIElement element(String pageName, String elementName) {
-
         By by = ObjectRepositoryManager.getLocator(pageName, elementName);
         WebElement webElement = driver.findElement(by);
-
         return new UIElement(webElement);
     }
 }

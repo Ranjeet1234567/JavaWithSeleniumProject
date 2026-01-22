@@ -5,109 +5,102 @@
     <artifactId>JavaAutomationFramework</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
     <name>JavaAutomationFramework</name>
     <url>http://maven.apache.org</url>
-
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-
+        <selenium.version>4.15.0</selenium.version>
+        <testng.version>7.10.2</testng.version>
+        <commonio.version>2.15.1</commonio.version>
+        <webdrivermanager.version>6.1.0</webdrivermanager.version>
+        <extentreport.version>5.1.1</extentreport.version>
+        <slf4japi.version>2.0.9</slf4japi.version>
+        <logbackclassic.version>1.5.13</logbackclassic.version>
+        <groovy.version>4.0.23</groovy.version>
+        <allureTestng.version>2.29.0</allureTestng.version>
+        <aspectjweaver.version>1.9.22</aspectjweaver.version>
+        <log4japi.version>2.20.0</log4japi.version>
+        <log4jcore.version>2.25.3</log4jcore.version>
         <!-- FORCE ALLURE OUTPUT LOCATION -->
         <allure.results.directory>
             ${project.build.directory}/allure-results
         </allure.results.directory>
     </properties>
-
     <dependencies>
-
         <!-- Selenium -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.15.0</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.15.1</version>
+            <version>${commonio.version}</version>
         </dependency>
-
-
-
-
         <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.10.2</version>
+            <version>${testng.version}</version>
         </dependency>
-
         <!-- WebDriverManager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>6.1.0</version>
+            <version>${webdrivermanager.version}</version>
         </dependency>
-
         <!-- Extent Report -->
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
-            <version>5.1.1</version>
+            <version>${extentreport.version}</version>
         </dependency>
         <!-- SLF4J API -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>2.0.9</version>
+            <version>${slf4japi.version}</version>
         </dependency>
-
         <!-- Logback Implementation -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.5.13</version>
+            <version>${logbackclassic.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.groovy</groupId>
             <artifactId>groovy</artifactId>
-            <version>4.0.23</version>
+            <version>${groovy.version}</version>
         </dependency>
-
         <!-- Allure TestNG -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.29.0</version>
+            <version>${allureTestng.version}</version>
         </dependency>
-
         <!-- AspectJ (MANDATORY for Allure) -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.9.22</version>
+            <version>${aspectjweaver.version}</version>
         </dependency>
         <!-- Log4j API -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.20.0</version>
+            <version>${log4japi.version}</version>
         </dependency>
-
         <!-- Log4j Core -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.25.3</version>
+            <version>${log4jcore.version}</version>
         </dependency>
-
-
     </dependencies>
-
     <build>
         <plugins>
-
             <!-- Maven Surefire -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -122,18 +115,14 @@
                         <version>3.2.5</version>
                     </dependency>
                 </dependencies>
-
                 <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>${project.basedir}/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
-
                     <useModulePath>false</useModulePath>
-
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.22/aspectjweaver-1.9.22.jar"
                     </argLine>
-
                     <systemPropertyVariables>
                         <allure.results.directory>
                             ${project.build.directory}/allure-results
@@ -141,7 +130,6 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 </project>
