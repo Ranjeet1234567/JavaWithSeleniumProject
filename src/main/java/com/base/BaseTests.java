@@ -2,11 +2,9 @@ package com.base;
 
 import com.utils.ConfigReader;
 import com.utils.DriverFactory;
+import com.utils.EmailUtils;
 import com.utils.JsonDataReader;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
@@ -40,6 +38,14 @@ public class BaseTests {
 
     @AfterMethod
     public void tearDown() {
-        DriverFactory.quitDriver();   // AFTER screenshot
+        DriverFactory.quitDriver();
+        // AFTER screenshot
     }
+    @AfterSuite
+    public void sendReportByEmail() {
+        EmailUtils.sendEmailWithReport(
+                System.getProperty("user.dir") + "/reports/extent/extent-report.html"
+        );
+    }
+
 }
