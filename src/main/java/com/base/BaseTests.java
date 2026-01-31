@@ -24,7 +24,7 @@ public class BaseTests {
 
         JsonDataReader.load(this.env, this.dataFile);
 
-        DriverFactory.initDriver(browser);   // driver is set here
+        DriverFactory.initDriver(browser);
 
         if (url == null) {
             throw new RuntimeException("URL not found for env: " + env);
@@ -39,7 +39,6 @@ public class BaseTests {
     @AfterMethod
     public void tearDown() {
         DriverFactory.quitDriver();
-        // AFTER screenshot
     }
     @AfterSuite
     public void sendReportByEmail() {

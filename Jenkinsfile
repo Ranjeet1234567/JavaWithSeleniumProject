@@ -30,9 +30,12 @@ pipeline {
             }
         }
 
-        stage('Cleanup') {
-            steps {
-                cleanWs()
+       stage('Allure Report') {
+                   steps {
+                       allure([
+                           includeProperties: false,
+                           results: [[path: 'target/allure-results']]
+                       ])
             }
         }
     }
