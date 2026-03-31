@@ -23,7 +23,7 @@ public class DriverFactory {
                 WebDriverManager.chromedriver().setup();
 
                 ChromeOptions options = new ChromeOptions();
-                options.setBinary("C:\\Users\\ranjeetverma\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe");
+                //options.setBinary("C:\\Users\\ranjeetverma\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe");
                 options.addArguments("--headless=new");
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
