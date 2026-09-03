@@ -10,5 +10,4 @@
         <class name="com.testcases.LoginTest"/>
     </classes>
 </test>
-
 </suite>
